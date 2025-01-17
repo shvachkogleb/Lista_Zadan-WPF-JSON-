@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="ToDoapp" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="DGTodoList" FontSize="16" FontWeight="Bold" Margin="10" Loaded="dgTodoList_Loaded" AutoGenerateColumns="False"
+                  Background="#F4F4F4" BorderBrush="#B0B0B0" BorderThickness="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=CreationDate}" IsReadOnly="True" Header="CreationDate" Width="180" />
+                <DataGridCheckBoxColumn Binding="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" Header="Done" Width="180" />
+                <DataGridTextColumn Binding="{Binding Path=Text}" IsReadOnly="False" Header="Todo" Width="*" />
+            </DataGrid.Columns>
+
+            <DataGrid.Resources>
+                <!-- Стиль для заголовков столбцов -->
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="Green" />
+                    <!-- Синий цвет для заголовка -->
+                    <Setter Property="Foreground" Value="White" />
+                    <!-- Белый текст -->
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Padding" Value="10,5" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="BorderBrush" Value="#B0B0B0" />
+                    <Setter Property="BorderThickness" Value="0,0,0,2" />
+                    <!-- Стиль для наведения на заголовок -->
+                </Style>
+
+                <!-- Стиль для строк в DataGrid -->
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="White" />
+
+                    <Setter Property="Foreground" Value="Black" />
+
+                    <Setter Property="Height" Value="40" />
+                    <Setter Property="Margin" Value="2,0" />
+                    <Setter Property="BorderBrush" Value="#D3D3D3" />
+                    <Setter Property="BorderThickness" Value="0,0,0,1" />
+
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                            <Setter Property="Background" Value="White" />
+               
+                            <Setter Property="Foreground" Value="Black" />
+      
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+    </Grid>
+</Window>
